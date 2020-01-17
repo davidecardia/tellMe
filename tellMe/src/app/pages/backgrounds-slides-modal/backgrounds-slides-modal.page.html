@@ -1,0 +1,73 @@
+<ion-header>
+  <ion-toolbar class="head-chat">
+    <ion-row>
+      <ion-col size="1">
+        <ion-icon (click)="dismissUnchanged()" class="icons" name="arrow-round-back"></ion-icon>
+      </ion-col>
+      <ion-col size="11">
+        <ion-item class="avatar">
+          <ion-avatar slot="start">
+            <img src="./../assets/anonymous.png">
+          </ion-avatar>
+          <div style="display:inline-block;">
+            <ion-title>Mario Rossi</ion-title>
+            <ion-text class="avatar--date">12:35</ion-text>
+              <ion-icon class="avatar--close" (click)="dismissUnchanged()" slot="end" name="close"></ion-icon>
+
+          </div>
+
+        </ion-item>
+      </ion-col>
+
+    </ion-row>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content (swipeleft)="rightBackground()" (swiperight)="leftBackground()"
+  [ngStyle]="{'background-image': 'url(' + urlVariable + ')'}" class="message-container" id="contenitore">
+
+  <ion-item-group class="message-container--item-group-container">
+    <ion-item class="message-container--message-received ">
+      <span class="message-container--hour message-container--hour-received">12:22</span>
+      <p class="message-container--message-testo">Scegli uno sfondo!</p>
+    </ion-item>
+    <ion-item class="message-container--message-send ">
+      <span class="message-container--hour message-container--hour-send">12:23</span>
+      <p class="message-container--message-testo">Scorri a destra o sinistra per vedere altri sfondi</p>
+    </ion-item>
+
+
+  </ion-item-group>
+
+</ion-content>
+<ion-fab horizontal="end" vertical="center" slot="fixed">
+  <ion-fab-button class="fabButton" (click)="rightBackground()">
+    <ion-icon class="iconaFreccia" style="color: #000000" name="arrow-round-forward"></ion-icon>
+  </ion-fab-button>
+</ion-fab>
+<ion-fab horizontal="start" vertical="center" slot="fixed">
+  <ion-fab-button class="fabButton" (click)="leftBackground()">
+    <ion-icon class="iconaFreccia" style="color: #000000" name="arrow-round-back"></ion-icon>
+  </ion-fab-button>
+</ion-fab>
+
+<ion-footer translucent>
+  <ion-toolbar [ngStyle]="{'background-image': 'url(' + urlVariable + ')'}" ckass="footerBack">
+
+    <ion-item class="send-message">
+      <ion-textarea aria-disabled="true" class="send-message--textarea" id="valText" autoGrow="true" rows="2" cols="1"
+        class="send-message--textarea">
+      </ion-textarea>
+      <ion-button [disabled]="true" fill="clear" class="send-message--button">
+        <ion-icon class="send-message--icon" name="mic"></ion-icon>
+      </ion-button>
+      <ion-button [disabled]="true" fill="clear" class="send-message--button">
+        <ion-icon class="send-message--icon" name="camera"></ion-icon>
+      </ion-button>
+      <ion-button [disabled]="true" fill="clear" class="send-message--button">
+        <ion-icon class="send-message--icon" name="send"></ion-icon>
+      </ion-button>
+    </ion-item>
+    <ion-button (click)="confirmBg()" color="dark" fill="outline" expand="block">Conferma</ion-button>
+  </ion-toolbar>
+</ion-footer>

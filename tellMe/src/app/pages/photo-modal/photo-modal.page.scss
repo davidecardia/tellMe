@@ -1,0 +1,107 @@
+.header {
+    --background: #000000;
+    --min-height: 100px;
+}
+
+.iconaClose {
+    color: #ffffff;
+    font-size: 34px
+}
+
+#contenitore {
+    --background: #000000;
+}
+
+.contenitore-foto {
+    text-align: center;
+    padding: auto !important;
+    height: 100%;
+}
+
+.photo {
+    padding: auto !important;
+
+}
+
+.scala {
+    transform: scale(2);
+}
+
+.ridimensiona {
+    transform: scale(1);
+}
+
+.cont-date {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+
+}
+
+.date {
+    color: #ffffff;
+    font-weight: bold;
+}
+
+.views {
+    color: #ffffff;
+    padding-bottom: 5px;
+    border-bottom: 1px solid #ffffff;
+
+
+}
+
+.viewsNumber {
+    position: absolute;
+    top: .9em;
+    right: 2em;
+    border-bottom: none;
+    font-weight: bold;
+}
+
+.cont-foto {
+    text-align: center;
+}
+
+.myPhoto {
+    max-width: 70%;
+}
+
+.cont-views {
+    width: 100%;
+    // display: flex;
+    // flex-direction: row;
+
+    .userViewAvatar {
+        //avatar customizzati
+        width: 100% !important;
+        height: 100% !important;
+        max-width: 25px !important;
+        max-height: 25px !important;
+
+        position: relative;
+        left: 3px;
+        top: 20px;
+    }
+
+    .span-views {
+        position: relative;
+        left: 20%;
+    }
+
+
+}
+
+.span-hour {
+    position: absolute;
+    left: 80%;
+}
+
+.card {
+    height: 92%;
+}
+
+.card-content-views {
+    height: 300px;
+    overflow: scroll;
+}

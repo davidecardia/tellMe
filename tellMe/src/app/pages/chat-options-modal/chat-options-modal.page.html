@@ -1,0 +1,31 @@
+<ion-header>
+  <ion-item class="item-cont">
+    <ion-button (click)="backToChat()" slot="start" class="item-cont--buttonClose" fill="clear">
+      <ion-icon name="arrow-round-back"></ion-icon>
+    </ion-button>
+    <ion-title>
+      Opzioni Chat
+    </ion-title>
+  </ion-item>
+</ion-header>
+<ion-content (swiperight)="dismiss()">
+
+  <ion-card>
+
+    <ion-card-content>
+
+      <ion-list>
+        <ion-item>
+          <ion-label (click)="openBackgroundsSlides()">Cambia sfondo delle chat</ion-label>
+          <ion-icon slot="end" name="image"></ion-icon>
+        </ion-item>
+        <ion-item>
+          <ion-label (click)="openEditFontSize($event)">Cambia dimensione caratteri</ion-label>
+          <ion-icon name="quote" slot="end"></ion-icon>
+        </ion-item>
+
+
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

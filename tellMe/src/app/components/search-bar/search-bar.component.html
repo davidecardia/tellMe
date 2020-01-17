@@ -1,0 +1,13 @@
+<div class="searchBar">
+  <form [formGroup]="form" (ngSubmit)="searchUsers($event)">
+    <ion-item lines="none" class="cont-bar">
+      <ion-button (click)="closeSearchB()" class="btn-back" fill="clear">
+        <ion-icon class="icon" name="arrow-back"></ion-icon>
+      </ion-button>
+      <ion-input autofocus="true" (ionBlur)="closeSearchB()" (ionChange)="getText($event.target.value)" type="text"
+        class="input" formControlName="user" placeholder="Digita nome utente..">
+      </ion-input>
+    </ion-item>
+  </form>
+</div>
+<app-search-results (hideBar)="hideBar($event)" [friends]="friends"></app-search-results>

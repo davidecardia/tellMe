@@ -1,0 +1,46 @@
+<ion-content class="cont-registr">
+  <form [formGroup]="form" (ngSubmit)="register()">
+    <ion-item class="cont-registr--item" text-center>
+      <ion-title class="cont-registr--title">Registrazione</ion-title>
+    </ion-item>
+
+    <div class="cont-input">
+      <ion-item text-center class="cont-input--item">
+        <ion-label class="cont-input--label" position="floating">*Nome</ion-label>
+        <ion-input formControlName="firstname"></ion-input>
+      </ion-item>
+      <ion-item text-center class="cont-input--item">
+        <ion-label class="cont-input--label" position="floating">*Cognome</ion-label>
+        <ion-input formControlName="lastname"></ion-input>
+      </ion-item>
+      <ion-item text-center class="cont-input--item">
+        <ion-label class="cont-input--label" position="floating">*Email</ion-label>
+        <ion-input formControlName="email"></ion-input>
+      </ion-item>
+      <ion-item text-center class="cont-input--item">
+        <ion-label class="cont-input--label" position="floating">*Password</ion-label>
+        <ion-input formControlName="password"></ion-input>
+      </ion-item>
+      <ion-item text-center class="cont-input--item">
+        <ion-label class="cont-input--label" position="floating">*Conferma password</ion-label>
+        <ion-input formControlName="cpassword"></ion-input>
+      </ion-item>
+      <ion-item text-center class="cont-input--item">
+        <div class="fileUpload">
+          <span class="cont-input--label">Foto profilo  </span>
+          <span *ngIf="!file" class="cont-input--label">+</span>
+          <ion-icon color="success" *ngIf="file" class="cont-input--label" name="checkmark"></ion-icon>
+          <input class="upload" (change)="getPhoto($event)" type="file" formControlName="photo">
+        </div>
+      </ion-item>
+    </div>
+    <div class="cont-btn">
+      <ion-button expand="full" fill="clear" class="cont-btn--btn" id="login" type="submit"> Registrati</ion-button>
+      <ion-button expand="full" fill="clear" class="cont-btn--btn" id="registr" [routerLink]="[ '/login']"> Login
+      </ion-button>
+    </div>
+
+
+  </form>
+
+</ion-content>

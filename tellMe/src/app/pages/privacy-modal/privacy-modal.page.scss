@@ -1,0 +1,49 @@
+.item-cont {
+    --background: #000000;
+
+    --border-color: transparent !important;
+
+    &--buttonClose {
+        --color: #fff;
+        font-size: 19px
+    }
+}
+
+ion-title {
+    --text-align: center;
+    background-color: #000000 !important;
+    color: #ffffff;
+    padding: 10px;
+    padding-left: 0px;
+}
+
+.items:first-of-type{
+     margin: 2em auto 0 auto;
+}
+.items {
+    margin: .5em auto;
+}
+
+
+
+
+.title {
+    font-size: 14px;
+    color: rgba($color: #000000, $alpha: 1.0);
+    font-weight: bold;
+}
+
+.subtitle {
+    font-size: 12px;
+    color: rgba($color: #000000, $alpha: .6);
+}
+
+.label-info {
+    margin-bottom: 2px;
+    padding-bottom: 0;
+}
+
+.label-info-dettagli {
+    font-size: 11px;
+    color: rgba(0, 0, 0, .3);
+}

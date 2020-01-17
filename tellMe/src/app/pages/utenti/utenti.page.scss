@@ -1,0 +1,29 @@
+ion-content {
+    --padding-bottom: 20%;
+    --padding-top: 5%;
+    --padding-end: 4%;
+}
+
+
+.cont-rot {
+    text-align: center;
+    margin-top: 50%;
+    opacity: .5;
+
+    .rot-img {
+        width: 50px;
+        animation: rot-img 2s linear infinite;
+    }
+
+}
+
+@keyframes rot-img {
+    from {
+        transform: rotate(0);
+    }
+
+    to {
+        transform: rotate(360deg);
+
+    }
+}

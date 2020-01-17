@@ -1,0 +1,27 @@
+<ion-header>
+  <ion-item class="item-cont">
+    <ion-button (click)="dismiss()" slot="end" class="item-cont--buttonClose" fill="clear">
+      <ion-icon name="close"></ion-icon>
+    </ion-button>
+  </ion-item>
+</ion-header>
+<div class="bordo"></div>
+
+<ion-content text-center padding>
+
+  <ion-title id="titolo" margin-top>Aggiungi amico</ion-title>
+  <form [formGroup]="form" (ngSubmit)="addFriend()">
+    <ion-item id="itemEmail" padding margin-top>
+      <ion-label position="floating"> Inserisci email.. </ion-label>
+      <ion-input formControlName="email"></ion-input>
+    </ion-item>
+    <div class="contenitore-rotella" *ngIf="showRot">
+      <img id="immagine1" src="https://image.flaticon.com/icons/png/512/34/34448.png" alt="Immagine caricamento">
+      <img id="immagine2" src="https://image.flaticon.com/icons/png/512/34/34448.png" alt="Immagine caricamento">
+    </div>
+    <ion-button type="submit" class="buttonAggiungi" margin-top expand="full" color="success">
+      Aggiungi &nbsp; <ion-icon name="person-add"></ion-icon>
+    </ion-button>
+  </form>
+
+</ion-content>

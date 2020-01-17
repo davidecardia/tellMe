@@ -1,0 +1,50 @@
+<ion-header>
+  <ion-item class="item-cont">
+    <ion-button (click)="backToChat()" slot="start" class="item-cont--buttonClose" fill="clear">
+      <ion-icon name="arrow-round-back"></ion-icon>
+    </ion-button>
+    <ion-title>
+      Informazioni generali
+    </ion-title>
+  </ion-item>
+</ion-header>
+<ion-content (swiperight)="dismiss()">
+
+  <ion-card>
+
+    <ion-card-content>
+      <ion-text class="title"> Statistiche su numero amici,chat e gruppi</ion-text>
+
+      <ion-list class="lista">
+        <ion-item>
+          <ion-label>Amici</ion-label>
+          <ion-note class="noteNumb" slot="end" color="success">{{friendsNumber}}</ion-note>
+        </ion-item>
+        <ion-item>
+          <ion-label>Utenti bloccati</ion-label>
+          <ion-note class="noteNumb" slot="end" color="danger">{{blockUsers}}</ion-note>
+        </ion-item>
+        <ion-item>
+          <ion-label>Chat silenziate</ion-label>
+          <ion-note class="noteNumb" slot="end" color="warning">{{mutedUsers}}</ion-note>
+        </ion-item>
+        <ion-item>
+          <ion-label>Chat archiviate</ion-label>
+          <ion-note class="noteNumb" slot="end" color="warning">{{filedUsers}}</ion-note>
+        </ion-item>
+        <ion-item>
+          <ion-label>Gruppi</ion-label>
+          <ion-note class="noteNumb" slot="end" color="success">{{groupsNumber}}</ion-note>
+        </ion-item>
+        <ion-item>
+          <ion-label>Gruppi silenziati</ion-label>
+          <ion-note class="noteNumb" slot="end" color="warning">{{mutedGroups}}</ion-note>
+        </ion-item>
+        <ion-item>
+          <ion-label>Gruppi archiviati</ion-label>
+          <ion-note class="noteNumb" slot="end" color="warning">{{filedGroups}}</ion-note>
+        </ion-item>
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

@@ -1,0 +1,185 @@
+.icons {
+    font-size: 24px;
+    margin-top: 16px;
+}
+
+.avatar {
+    --border-color: #fff;
+
+    &--date {
+        font-size: 12px;
+        position: absolute;
+        right: 15%;
+        top: 38%;
+    }
+
+    &--title {
+        font-size: 17px;
+    }
+
+    &--close {
+        font-size: 27px;
+        position: absolute;
+        right: 1%;
+        top: 24%;
+        color: #000000;
+    }
+
+
+}
+
+.message-container {
+
+
+    padding-bottom: 0px;
+    margin-bottom: 0px;
+    --background: none;
+    // background-image: url('/../assets/backgrounds/bg1.jpg');
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+
+
+    display: block !important;
+
+    &--message {
+
+        --border-color: transparent;
+
+    }
+
+    &--message-testo {
+        box-sizing: border-box;
+        width: 95%;
+    }
+
+
+    &--item-group-container:last-of-type {
+        margin-bottom: 20px;
+    }
+
+    &--message-received {
+        // se ricevuto,quindi id diverso da quello loggato
+        --background: linear-gradient(to bottom, #c9d6ff, #e2e2e2);
+        margin-top: 20px;
+        margin-left: 10px;
+        width: 80%;
+        clip-path: polygon(11% 100%, 100% 100%, 100% 28%, 100% 0, 100% 0, 0 0, 11% 28%);
+        --inner-padding-start: 15%;
+        --inner-padding-end: 5%;
+
+
+
+    }
+
+    &--message-send {
+        // se inviato,quindi id uaguale a quello loggato
+        --background: linear-gradient(to right, #43c6ac, #f8ffae);
+        margin-top: 20px;
+        margin-right: 10px;
+        padding-left: 20%;
+        clip-path: polygon(0 100%, 89% 100%, 89% 28%, 100% 0, 100% 0, 0 0, 0 28%);
+        --inner-padding-start: 5%;
+        --inner-padding-end: 17%;
+    }
+
+    &--hour {
+        position: absolute;
+        font-size: 9px;
+        padding: 5px;
+        color: rgba($color: #000000, $alpha:.6);
+    }
+
+    &--hour-send {
+        top: 0%;
+        right: 12%;
+    }
+
+    &--hour-received {
+        top: 0%;
+        left: 5%;
+    }
+
+}
+
+// per nascondere bordo colorato di validazione
+.item-interactive.ion-invalid {
+    --highlight-background: transparent;
+}
+
+.item-interactive.ion-valid {
+    --highlight-background: transparent;
+}
+
+
+.send-message {
+    position: relative;
+    bottom: 2px;
+    width: 100%;
+
+    --highlight-color-focused: transparent !important;
+    --border-radius: 30px;
+    --background: #fff;
+
+
+    &--textarea {
+        --highlight-color-focused: transparent !important;
+
+        word-wrap: break-word;
+    }
+
+    &--icon {
+        font-size: 27px;
+        color: #43c6ac;
+    }
+}
+
+.footerBack {
+    --background: none;
+    // background-image: url('/../assets/backgrounds/bg1.jpg');
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding-bottom: 0px;
+    margin-bottom: 0px;
+    --padding: 3px;
+}
+
+.footer-md:before {
+    top: 0px;
+}
+
+.contenitore-photo {
+    padding: 20px 0px;
+}
+
+.contenitore-photo img {
+    border-radius: 5px;
+    width: 150px;
+    height: auto;
+}
+
+.creazGruppoCont {
+    margin: 20px 0;
+    text-align: center;
+}
+
+.creazGruppo {
+    color: rgba(0, 0, 0, .6);
+    font-size: 24px;
+    width: auto;
+    display: inline-block;
+    z-index: 3;
+    padding: 0 20px 0 20px;
+    position: relative;
+    margin: 0;
+    background: transparent;
+}
+
+.fabButton {
+    --background: rgba(255, 255, 255, .4);
+}
+
+.iconaFreccia {
+    color: #000000;
+}

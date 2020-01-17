@@ -1,0 +1,141 @@
+<ion-header>
+  <ion-toolbar class="head-chat">
+    <ion-row>
+      <ion-col class="colonna1" size="1">
+        <ion-icon class="icons" (click)="backToChat()" name="arrow-round-back"></ion-icon>
+      </ion-col>
+      <ion-col size="11">
+        <ion-item (click)="openDetails()" class="avatar">
+          <ion-avatar slot="start">
+            <img src="{{photo}}">
+          </ion-avatar>
+          <div style="display:inline-block;">
+            <ion-title [ngClass]="{'fontSizeBigTitle': (fontSize == 'grande'),'fontSizeSmallTitle': (fontSize == 'piccolo')}">{{firstname}} {{lastN}} </ion-title>
+            <ion-icon class="avatar--icon-online" name="radio-button-on" color="success" *ngIf="online"></ion-icon>
+            <ion-text class="avatar--date" *ngIf="date">{{date}}</ion-text>
+            <span id="isWriting" *ngIf="isWrit">Sta scrivendo...</span>
+          </div>
+
+        </ion-item>
+        <!-- <ion-title>{{friendFirstName}} {{friendLastName}}</ion-title> -->
+      </ion-col>
+
+      <!-- <ion-col size="1">
+        <ion-icon class="icons" name="more"></ion-icon>
+      </ion-col> -->
+    </ion-row>
+
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [ngStyle]="{'background-image': 'url(' + urlVariable + ')'}" fullscreen scrollEvents="true" #content
+  class="message-container" id="contenitore">
+  <div (click)="swipeUp()" class="creazGruppoCont" *ngIf="((leng > limit) && (leng/2) > limit)">
+    <ion-text class="creazGruppo">
+      <ion-icon name="add"></ion-icon>
+    </ion-text>
+  </div>
+
+
+
+  <div class="contenitore">
+
+    <div *ngFor="let message of messages; let i = index;"
+      [ngClass]="{'message-received': message.uid !== idLoggedUser, 'message-send': message.uid === idLoggedUser,'citaMe': (marginRight == true && messCit === i && message.uid === idLoggedUser), 'citaLui': (marginLeft == true && messCit === i && message.uid !== idLoggedUser)}">
+
+      <div (swipeLeft)="citaMe(i,message.text,message.uid,message.zzMit,message.photo)"
+        (swipeRight)="citaLui(i,message.text,message.uid,message.zzMit,message.photo)" class="cont-testo">
+        <div class="citation" *ngIf="message.zzCitation !== '' || message.zzPhotoCit !== ''">
+          <span [ngClass]="{'fontSizeBigCitName': (fontSize == 'grande'),'fontSizeSmallCitName': (fontSize == 'piccolo')}" *ngIf="message.zzCitation !== '' || message.zzPhotoCit !== ''"
+            class="cit-name">{{message.zzCitName}}</span>
+          <p [ngClass]="{'fontSizeBigCitText': (fontSize == 'grande'),'fontSizeSmallCitText': (fontSize == 'piccolo')}" *ngIf="message.zzCitation !== '' && message.zzCitation!== null" class="citation-text">
+            {{message.zzCitation}}</p>
+          <div *ngIf="message.zzPhotoCit !== ''" class="cont-photo-cit">
+            <img (click)="openPhoto(message.zzPhotoCit);" class="img-cit" src="{{message.zzPhotoCit}}" alt="">
+          </div>
+
+        </div>
+
+        <p [ngClass]="{'fontSizeBig': (fontSize == 'grande'),'fontSizeSmall': (fontSize == 'piccolo')}" *ngIf="message.text !== ''" class="testo"> {{message.text}} </p>
+        <div (click)="openPhoto(message.photo,message.date);" *ngIf="message.photo !== ''" class="cont-photo">
+          <img class="img" src="{{message.photo}}" alt="">
+
+        </div>
+
+        <div class="cont-spIc">
+          <span class="date" [ngClass]="{'colorImg': message.photo !== '','fontSizeBigDate': (fontSize == 'grande'),'fontSizeSmallDate': (fontSize == 'piccolo') }">{{message.date}} </span>
+          <div *ngIf=" message.uid == idLoggedUser" class="icone">
+            <ion-icon [ngClass]="{'spunta-color':lastView > message.createdAt, 'colorImg': message.photo !== ''}"
+              class="spunta1" name="checkmark" name="checkmark"></ion-icon>
+            <ion-icon [ngClass]="{'spunta-color':lastView > message.createdAt,'colorImg': message.photo !== '' }"
+              class="spunta2" name="checkmark" name="checkmark"></ion-icon>
+          </div>
+        </div>
+
+      </div>
+
+
+    </div>
+  </div>
+
+
+  <!-- <ion-item-group class="message-container--item-group-container" *ngFor="let message of messages"> -->
+
+  <!-- <ion-item class="message-container--message "
+      [ngClass]="{'message-container--message-received': message.uid != idLoggedUser, 'message-container--message-send': message.uid == idLoggedUser}">
+      <span class="message-container--hour message-container--hour-received"
+        [ngClass]="{'message-container--hour-received': message.uid != idLoggedUser, 'message-container--hour-send': message.uid == idLoggedUser}">{{message.date}}</span>
+      <ion-icon *ngIf=" message.uid == idLoggedUser" [ngClass]="{'spunta-color': message.zSaw == true }" class="spunta1"
+        name="checkmark"></ion-icon>
+      <ion-icon *ngIf=" message.uid == idLoggedUser" [ngClass]="{'spunta-color': message.zSaw == true }" class="spunta2"
+        name="checkmark"></ion-icon> -->
+  <!-- trovare il modo di aggiungere proprietà saw(true o false) ai messaggi in base al click sulla chat -->
+  <!-- <p class="message-container--message-testo" *ngIf="message.text !== ''">{{message.text}}</p>
+      <div *ngIf="message.photo !== ''" class="contenitore-photo">
+        <img (click)="openPhoto(message.photo);" src="{{message.photo}}">
+      </div>
+      <div *ngIf="message.audio !== ''" class="contenitore-audio">
+        <audio src="{{message.audio}}" controls></audio>
+      </div>
+    </ion-item>
+  </ion-item-group> -->
+
+</ion-content>
+
+<ion-footer translucent>
+
+  <ion-toolbar [ngStyle]="{'background-image': 'url(' + urlVariable + ')'}" id="footerBack">
+    <div [ngClass]="{'cont-cit-animation': citation !== ''}" class="cont-cit"
+      *ngIf="citation !== '' || urlPhotoCit !== ''">
+      <span [ngClass]="{'fontSizeBigCitName': (fontSize == 'grande'),'fontSizeSmallCitName': (fontSize == 'piccolo')}" class="span-citName">{{citName}}</span>
+      <p [ngClass]="{'fontSizeBigCitText': (fontSize == 'grande'),'fontSizeSmallCitText': (fontSize == 'piccolo')}"  *ngIf="citation !== ''" class="testo-cit">{{citation}}</p>
+      <div *ngIf="urlPhotoCit !== ''" class="cont-photo">
+        <img class="photoCit" src="{{urlPhotoCit}}" alt="">
+      </div>
+
+      <ion-icon class="close-cit" (click)="closeCit()" name="close"></ion-icon>
+
+    </div>
+    <form [formGroup]="form" (ngSubmit)="sendMessage()">
+      <ion-item class="send-message">
+
+        <ion-textarea [ngClass]="{'fontSizeBigInput': (fontSize == 'grande'),'fontSizeSmallInput': (fontSize == 'piccolo')}" (ionChange)="isWriting($event.target.value)" (ionFocus)="isWriting($event.target.value)" #textarea
+          class="send-message--textarea" id="valText" formControlName="message" autoGrow="true" rows="2" cols="1"
+          class="send-message--textarea">
+        </ion-textarea>
+        <ion-button [disabled]="!textarea.value ? 'false' : 'true'" (click)="addAudio();" fill="clear"
+          class="send-message--button">
+          <ion-icon class="send-message--icon" name="mic"></ion-icon>
+        </ion-button>
+        <ion-button [disabled]="!textarea.value ? 'false' : 'true'" (click)="addCameraPhoto();" fill="clear"
+          class="send-message--button">
+          <ion-icon class="send-message--icon" name="camera"></ion-icon>
+        </ion-button>
+        <ion-button [disabled]="textarea.value ? 'false' : 'true'" type="submit" fill="clear"
+          class="send-message--button">
+          <ion-icon class="send-message--icon" name="send"></ion-icon>
+        </ion-button>
+      </ion-item>
+    </form>
+  </ion-toolbar>
+</ion-footer>

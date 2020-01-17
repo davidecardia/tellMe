@@ -1,0 +1,29 @@
+.cont-bar {
+    width: 100%;
+
+    .input {
+        --padding-start: 1.3em;
+    }
+
+    .icon {
+        color: rgba(0, 0, 0, .7);
+    }
+    .btn-back{
+        // color: rgba(0, 0, 0, .7);
+    }
+}
+
+.searchBar {
+    animation: bar .3s ease-in-out;
+    z-index: 3;
+}
+
+@keyframes bar{
+    from{
+        transform: translateX(+100%);
+    }
+    to{
+        transform: translateX(0%);
+
+    }
+}

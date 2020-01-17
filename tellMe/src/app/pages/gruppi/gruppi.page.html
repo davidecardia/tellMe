@@ -1,0 +1,103 @@
+<ion-content (swipeRight)="swipeRight()" (swipeleft)="swipeLeft()">
+  <div class="cont-rot" *ngIf="caricamento">
+    <img class="rot-img" src="../../assets/rotella.png" alt="">
+  </div>
+  <ion-item-group class="contenitore" *ngFor="let group of groupsList">
+    <div class="cont-border" *ngIf="group.payload.val().filed == false">
+      <ion-item>
+        <ion-avatar slot="start">
+          <img (click)="openPhoto(group.payload.val().photoGroup);" src="{{group.payload.val().photoGroup}}">
+        </ion-avatar>
+        <ion-label
+          (click)="openChat(group.payload.key,group.payload.val().photoGroup,group.payload.val().groupName,group.payload.val().secret,group.payload.val().secretKey)"
+          (press)="openDetails(group.payload.key,group.payload.val().photoGroup,group.payload.val().groupName,group.payload.val().administrator)">
+          <ion-text>{{group.payload.val().groupName}}</ion-text>
+          <p *ngIf="(group.payload.val().zzzzzIsWriting == true)" class="isWriting">
+            {{group.payload.val().zzzzzWhoIsWriting}} sta scrivendo...</p>
+
+          <p [ngClass]="{'newMessageMitt': (group.payload.val().zNewMess == true)}"
+            *ngIf="(group.payload.val().zzzzzIsWriting == false && group.payload.val().zLeave == false && group.payload.val().zzPrev !== 'photoIcon' && group.payload.val().muted == false)">
+            {{group.payload.val().zzzMitt}} :
+            <span *ngIf="(group.payload.val().zLeave == false)"
+              [ngClass]="{'newMessage': (group.payload.val().zNewMess == true)}">
+              <i>{{group.payload.val().zzPrev}}</i>
+            </span>
+          </p>
+          <p (click)="openChat(group.payload.key,group.payload.val().photoGroup,group.payload.val().groupName,group.payload.val().secret,group.payload.val().secretKey)"
+            *ngIf="(group.payload.val().zzzzzIsWriting == false && group.payload.val().zLeave == false && group.payload.val().zzPrev == 'photoIcon' && group.payload.val().muted == false)"
+            color="success">
+            <span *ngIf="(group.payload.val().zLeave == false)"
+              [ngClass]="{'newMessageMitt': (group.payload.val().zNewMess == true)}">
+              {{group.payload.val().zzzMitt}} :
+            </span>
+            <span *ngIf="(group.payload.val().zLeave == false)"
+              [ngClass]="{'newMessage': (group.payload.val().zNewMess == true)}">Foto <ion-icon name="camera">
+              </ion-icon>
+            </span>
+          </p>
+        </ion-label>
+        <ion-text
+          (click)="openChat(group.payload.key,group.payload.val().photoGroup,group.payload.val().groupName,group.payload.val().secret,group.payload.val().secretKey)"
+          *ngIf="(group.payload.val().muted == false)" slot="end">
+          <span *ngIf="(group.payload.val().zLeave == false)"
+            [ngClass]="{'newMessage': (group.payload.val().zNewMess == true)}"
+            class="dateMessage">{{group.payload.val().zzzNewMessDate}}</span>
+        </ion-text>
+        <div class="contNumb"
+          *ngIf="(group.payload.val().muted == false && group.payload.val().zLeave == false && group.payload.val().zNewMess == true && (group.payload.val().zzzNewMessNumbTot - group.payload.val().zzzNewMessNumb >0))">
+          <span [ngClass]="{'newMessageNumb': (group.payload.val().zNewMess == true)}">
+            {{group.payload.val().zzzNewMessNumbTot - group.payload.val().zzzNewMessNumb}}
+          </span>
+        </div>
+        <ion-text *ngIf="group.payload.val().secret" slot="end">
+          <ion-icon class="icon-lock" name="lock"></ion-icon>
+        </ion-text>
+        <ion-text *ngIf="group.payload.val().muted" slot="end">
+          <ion-icon class="icon-lock" name="notifications-off"></ion-icon>
+        </ion-text>
+        <ion-text *ngIf="group.payload.val().zLeave" slot="end">
+          <ion-icon class="icon-lock" name="exit"></ion-icon>
+        </ion-text>
+      </ion-item>
+    </div>
+  </ion-item-group>
+
+
+
+
+  <div *ngIf="(nFiled > 0)" (click)="showFiled()" class="separatore">
+    <ion-text class="separatore--testo">Gruppi archiviati ( {{nFiled}} )</ion-text>
+    <ion-icon class="separatore--icona" *ngIf="!filedUsersShow" name="arrow-dropdown"></ion-icon>
+    <ion-icon class="separatore--icona" *ngIf="filedUsersShow" name="arrow-dropup"></ion-icon>
+  </div>
+  <div class="cont-border" *ngIf="filedUsersShow">
+    <ion-item-group *ngFor="let group of groupsList">
+
+      <div *ngIf="group.payload.val().filed == true">
+        <ion-item class="item-blocked">
+          <ion-avatar slot="start">
+            <img (click)="openPhoto(group.payload.val().photoGroup)" src="{{group.payload.val().photoGroup}}">
+          </ion-avatar>
+          <ion-label
+            (press)="openDetails(group.payload.key,group.payload.val().photoGroup,group.payload.val().groupName,group.payload.val().administrator)">
+            <ion-text>{{group.payload.val().groupName}}</ion-text>
+            <p *ngIf="group.payload.val().zNewMess == true" color="success"> Nuovi/o messaggi/o</p>
+          </ion-label>
+          <ion-text *ngIf="group.payload.val().secret" slot="end">
+            <ion-icon class="icon-lock" name="lock"></ion-icon>
+          </ion-text>
+          <ion-text *ngIf="group.payload.val().muted" slot="end">
+            <ion-icon class="icon-lock" name="notifications-off"></ion-icon>
+          </ion-text>
+        </ion-item>
+      </div>
+    </ion-item-group>
+
+  </div>
+  <ion-fab id="more" vertical="bottom" horizontal="center" slot="fixed">
+    <ion-fab-button (click)="addGroup()" color="dark">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
+</ion-content>
