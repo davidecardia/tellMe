@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "25361763381",
+    "firebase_url": "https://dimmi-7a3a4.firebaseio.com",
+    "project_id": "dimmi-7a3a4",
+    "storage_bucket": "dimmi-7a3a4.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:25361763381:android:cf7c8c9e4dd0a295ba757c",
+        "android_client_info": {
+          "package_name": "com.davide.tellme"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "25361763381-oc1g6oiit7amqogduh4ag322e3hp7trm.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDboClobTsfhOZAqKUCeGmtomzcBRu7pgE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "25361763381-oc1g6oiit7amqogduh4ag322e3hp7trm.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

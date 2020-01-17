@@ -1,0 +1,25 @@
+<ion-header id="headerr">
+  <ion-toolbar class="header">
+    <ion-button (click)="dismiss()" slot="start" fill="clear">
+      <ion-icon class="iconaClose" name="close"></ion-icon>
+    </ion-button>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content (press)="stopStatus()" (pressup)="jumpStatus(1)" (swipeRight)="jumpStatus(-1)" (swipeLeft)="jumpStatus(1)" direction="xy" zooming="true" min-zoom="1.0"
+  max-zoom="2.5" overflow-scroll="false" has-bouncing="false" id="contenitore">
+
+  <div class="contenitore-foto">
+  <div (tap)="jumpStatus(-1)" class="tap-div-sx"></div>
+  <div (tap)="jumpStatus(1)" class="tap-div-dx"></div>
+    <img id="immagine" (pinchstart)="zoom()" (pinchend)="zoomEnd()" class="photo" src="{{url}}">
+  </div>
+
+
+  <div class="cont-date" style="position: absolute;bottom:10px;right:10px;">
+    <span class="date" style="color:#fff;">{{date}}</span>
+  </div>
+
+</ion-content>
+
+<app-progress-bar [pause]="pause" [animation]="animation"></app-progress-bar>

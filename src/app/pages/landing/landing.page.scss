@@ -1,0 +1,187 @@
+.titolo {
+    margin-top: 40px;
+    text-align: center;
+    font-size: 24px;
+    letter-spacing: 2px;
+    font-weight: bold;
+    animation: title .6s linear .2s;
+}
+
+@keyframes title {
+    0% {
+        transform: translateX(-100%);
+        color: #ffffff;
+    }
+
+    90% {
+        transform: translateX(101%);
+        color: #000000;
+        font-size: 28px;
+
+    }
+
+    100% {
+        transform: translateX(100%);
+        color: #000000;
+        font-size: 24px;
+
+    }
+}
+
+
+.titolo2 {
+    margin-top: 20px;
+    text-align: center;
+    letter-spacing: 4px;
+    font-weight: bold;
+}
+
+.contenitore-rotella {
+    margin-top: 30px;
+    padding-left: 40px;
+    padding-right: 40px;
+    padding-top: 10px;
+}
+
+
+// .contenitore-rotella img {
+//     z-index: 1;
+//     animation: rotazione 6s infinite linear;
+// }
+
+#immagine1 {
+    width: 60%;
+    height: auto;
+
+    z-index: 1;
+    animation: rotazione1 8s infinite linear;
+
+}
+
+#immagine2 {
+    width: 30%;
+    height: auto;
+    animation: rotazione2 4s infinite linear;
+}
+
+// #immagine3{
+//     width:40%;
+//     height: auto;
+//     animation: rotazione 4s infinite linear;
+
+// }
+
+
+
+
+@keyframes rotazione1 {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(-360deg);
+    }
+}
+
+
+@keyframes rotazione2 {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.footer-p {
+    padding-left: 5px;
+    text-align: left;
+    font-size: 12px;
+}
+
+.footer-name {
+    position: absolute;
+    right: 5px;
+    font-size: 12px;
+    padding-right: 5px;
+    font-weight: bold;
+}
+
+#span-puntino1 {
+    font-size: 24px;
+    font-weight: bold;
+    animation: puntini 1s infinite linear .5s;
+}
+
+#span-puntino2 {
+    font-size: 24px;
+    font-weight: bold;
+    animation: puntini 1s infinite linear .75s;
+}
+
+#span-puntino3 {
+    font-size: 24px;
+    font-weight: bold;
+    animation: puntini 1s infinite linear 1s;
+}
+
+
+@keyframes puntini {
+    0% {
+        color: #000000;
+    }
+
+    100% {
+        color: #ffffff;
+    }
+}
+
+.cont-aereo {
+    // position:absolute;
+    // bottom:30px;
+    width: 100%;
+    height: 150px;
+}
+
+#aereo {
+    z-index: 10;
+    left: 0px;
+    bottom: 3px;
+    width: 10%;
+    height: auto;
+    animation: aereo 2s linear infinite;
+}
+
+@keyframes aereo {
+    0% {
+        transform: translateX(-150px) translateY(120px) rotate(70deg)
+    }
+
+    30% {
+        transform: translateX(100px) translateY(50px) rotate(30deg);
+    }
+
+    50% {
+        transform: translateX(150px) translateY(0px) rotate(0deg);
+    }
+
+    50% {
+        transform: translateX(150px) translateY(10px) rotate(-90deg);
+    }
+
+    70% {
+        transform: translateX(180px) translateY(60px) rotate(-180deg);
+    }
+
+    80% {
+        transform: translateX(200px) translateY(90px) rotate(-250deg);
+    }
+
+    100% {
+        transform: translateX(500px) translateY(140px) rotate(-360deg);
+    }
+
+
+}

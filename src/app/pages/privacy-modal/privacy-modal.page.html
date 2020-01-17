@@ -1,0 +1,42 @@
+<ion-header>
+  <ion-item class="item-cont">
+    <ion-button (click)="backToChat()" slot="start" class="item-cont--buttonClose" fill="clear">
+      <ion-icon name="arrow-round-back"></ion-icon>
+    </ion-button>
+    <ion-title>
+      Opzioni Chat
+    </ion-title>
+  </ion-item>
+</ion-header>
+<ion-content (swiperight)="dismiss()">
+
+  <ion-card>
+
+    <ion-card-content>
+      <ion-text class="title">Chi può vedere le tue informazioni personali?</ion-text>
+      <p class="subtitle">Bloccando la visibilità delle tue informazioni personali, non potrai vedere quelle degli altri
+        utenti</p>
+
+        <ion-item (click)="changeLastAccess($event)" class="items">
+          <ion-label class="label-info">Cambia visibilità ultimo accesso <br>
+            <span class="label-info-dettagli">Nascondi accesso ma mostra online</span>
+          </ion-label>
+          <ion-icon slot="end" name="eye-off"></ion-icon>
+        </ion-item>
+        <ion-item (click)="hideOnlineStatus($event)" class="items">
+          <ion-label class="label-info">Nascondi stato online<br>
+            <span class="label-info-dettagli">Nascondi stato online e ultimo accesso</span>
+          </ion-label>
+          <ion-icon slot="end" name="radio-button-on"></ion-icon>
+        </ion-item>
+        <ion-item (click)="changePhotoVisibility($event)" class="items">
+          <ion-label class="label-info">Cambia visibilità della foto profilo</ion-label>
+          <ion-icon name="contact" slot="end"></ion-icon>
+        </ion-item>
+        <ion-item (click)="changeDoubleCheck($event)" class="items">
+          <ion-label class="label-info">Cambia conferma di lettura messaggio</ion-label>
+          <ion-icon name="chatboxes" slot="end"></ion-icon>
+        </ion-item>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

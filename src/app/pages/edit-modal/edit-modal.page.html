@@ -1,0 +1,65 @@
+<ion-content (swiperight)="dismiss()">
+  <ion-item id="item-freccia">
+    <ion-button (click)="backToChat()" slot="start" fill="clear">
+      <ion-icon name="arrow-round-back"></ion-icon>
+    </ion-button>
+  </ion-item>
+  <div class="cont-foto-edit" id="cont-foto">
+    <div class="cont-foto">
+      <img id="img-p" src="{{photo}}" />
+
+    </div>
+    <!-- <ion-icon (click)="editPhoto()" class="editPhotoIcon" name="create"></ion-icon> -->
+    <div id="cont-edit" class="fileUpload">
+      <!-- <span class="cont-input--label">Foto profilo </span> -->
+      <span class="cont-input--label">
+        <ion-icon name="create"></ion-icon>
+      </span>
+      <input class="upload cont-input--label" (change)="editPhoto($event)" type="file">
+    </div>
+
+  </div>
+  <div class="bordo"></div>
+
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>{{firstname}} {{lastname}}</ion-card-title>
+      <ion-card-subtitle *ngIf="online">Online</ion-card-subtitle>
+      <ion-card-subtitle *ngIf="date">{{date}}</ion-card-subtitle>
+
+    </ion-card-header>
+    <ion-card-content>
+      <ion-item>
+        <ion-label class="label-info">Informazioni sulle chat <br>
+          <span class="label-info-dettagli">Dettagli su numero amici,chat e gruppi</span>
+        </ion-label>
+        <ion-icon (click)="openInfoChats()" class="info" name="arrow-forward"></ion-icon>
+      </ion-item>
+
+      <ion-item>
+        <ion-label class="label-info">Chat<br>
+          <span class="label-info-dettagli">Sfondo e dimensione caratteri</span>
+        </ion-label>
+        <ion-icon (click)="openChatsOptions()" class="info" name="arrow-forward"></ion-icon>
+      </ion-item>
+
+      <ion-item>
+        <ion-label class="label-info">Privacy<br>
+          <span class="label-info-dettagli">Visibilità stato,ultimo accesso,doppie spunte..</span>
+        </ion-label>
+        <ion-icon (click)="changePrivacyStatus()" class="info" name="arrow-forward"></ion-icon>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Blocca tutte le notifiche <br> <span class="label-info-dettagli">Blocca le notifiche di qualsiasi
+            utente </span></ion-label>
+        <ion-toggle checked="{{silenceAll}}" id="silenceAllToggle" [(ngModel)]="isSilenceAllToggled"
+          (click)="blockAllNotifications()" slot="end" name="cherry" color="danger"></ion-toggle>
+      </ion-item>
+
+    </ion-card-content>
+  </ion-card>
+
+
+
+</ion-content>

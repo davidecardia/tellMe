@@ -1,0 +1,119 @@
+<ion-content (swipeleft)="swipeLeft()">
+  <div class="cont-rot" *ngIf="caricamento">
+    <img class="rot-img" src="../../assets/rotella.png" alt="">
+  </div>
+  <ion-item-group class="contenitore" *ngFor="let chat of chatsList ">
+    <div class="cont-border" *ngIf="chat.payload.val().block == false">
+      <div *ngIf="chat.payload.val().filed == false">
+        <div *ngIf="chat.payload.val().messages || (chat.payload.val().newMess == true)">
+          <ion-item>
+            <ion-avatar slot="start">
+              <img (click)="openPhoto(chat.payload.val().foto)" src="{{chat.payload.val().foto}}">
+            </ion-avatar>
+            <ion-label
+              (press)="openDetails(chat.payload.key,chat.payload.val().firstname,chat.payload.val().lastname,chat.payload.val().foto)"
+              (click)="openChat(chat.payload.key,chat.payload.val().firstname,chat.payload.val().lastname,chat.payload.val().foto,chat.payload.val().secret,chat.payload.val().secretKey)">
+              <ion-text>{{chat.payload.val().firstname}} {{ chat.payload.val().lastname}}</ion-text>
+              <p *ngIf="(chat.payload.val().zzzzIsWriting == true)" class="isWriting">Sta scrivendo...</p>
+              <p [ngClass]="{'newMessageMitt': (chat.payload.val().newMess == true)}"
+                *ngIf="(chat.payload.val().secret == false && chat.payload.val().block == false && chat.payload.val().zPrev !== 'photoIcon' && chat.payload.val().muted == false && chat.payload.val().zzzzIsWriting == false)">
+                {{chat.payload.val().zMitt}} :
+                <span [ngClass]="{'newMessage': (chat.payload.val().newMess == true)}">
+                  <i>{{chat.payload.val().zPrev}}</i>
+                </span>
+              </p>
+              <p *ngIf="(chat.payload.val().secret == false && chat.payload.val().block == false && chat.payload.val().zPrev == 'photoIcon' && chat.payload.val().muted == false && chat.payload.val().zzzzIsWriting == false)"
+                color="success">
+                <span [ngClass]="{'newMessageMitt': (chat.payload.val().newMess == true)}">
+                  {{chat.payload.val().zMitt}} :
+                </span>
+                <span [ngClass]="{'newMessage': (chat.payload.val().newMess == true)}">Foto <ion-icon name="camera">
+                  </ion-icon>
+                </span>
+              </p>
+            </ion-label>
+            <ion-text *ngIf="(chat.payload.val().secret == false && chat.payload.val().muted == false)" slot="end">
+              <span [ngClass]="{'newMessage': (chat.payload.val().newMess == true)}"
+                class="dateMessage">{{chat.payload.val().zNewMessDate}}</span>
+            </ion-text>
+            <div class="contNumb"
+              *ngIf="(chat.payload.val().secret == false && chat.payload.val().muted == false && chat.payload.val().newMess == true && (chat.payload.val().zNewMessNumbTot - chat.payload.val().zNewMessNumb >0))">
+              <span [ngClass]="{'newMessageNumb': (chat.payload.val().newMess == true)}">
+                {{chat.payload.val().zNewMessNumbTot - chat.payload.val().zNewMessNumb}}
+              </span>
+            </div>
+
+
+            <ion-text *ngIf="chat.payload.val().secret" slot="end">
+              <ion-icon class="icon-lock" name="lock"></ion-icon>
+            </ion-text>
+            <ion-text *ngIf="chat.payload.val().muted" slot="end">
+              <ion-icon class="icon-lock" name="notifications-off"></ion-icon>
+            </ion-text>
+          </ion-item>
+        </div>
+      </div>
+    </div>
+
+  </ion-item-group>
+  <div *ngIf="(nBlocked > 0)" (click)="showBlocked()" class="separatore">
+    <ion-text class="separatore--testo">Utenti bloccati ( {{nBlocked}} )</ion-text>
+    <ion-icon class="separatore--icona" *ngIf="!blockedUsersShow" name="arrow-dropdown"></ion-icon>
+    <ion-icon class="separatore--icona" *ngIf="blockedUsersShow" name="arrow-dropup"></ion-icon>
+  </div>
+  <div class="cont-border" *ngIf="blockedUsersShow">
+    <ion-item-group *ngFor="let chat of chatsList">
+      <div *ngIf="chat.payload.val().block == true">
+        <ion-item class="item-blocked">
+          <ion-avatar slot="start">
+            <img (click)="openPhoto(chat.payload.val().foto)" src="{{chat.payload.val().foto}}">
+          </ion-avatar>
+          <ion-label
+            (press)="openDetails(chat.payload.key,chat.payload.val().firstname,chat.payload.val().lastname,chat.payload.val().foto)"
+            (click)="openChat(chat.payload.key,chat.payload.val().firstname,chat.payload.val().lastname,chat.payload.val().foto)">
+            <ion-text>{{chat.payload.val().firstname}} {{ chat.payload.val().lastname}}</ion-text>
+            <p *ngIf="chat.payload.val().newMess == true" color="success"> Nuovi/o messaggi/o</p>
+          </ion-label>
+          <ion-text *ngIf="chat.payload.val().secret" slot="end">
+            <ion-icon class="icon-lock" name="lock"></ion-icon>
+          </ion-text>
+          <ion-text *ngIf="chat.payload.val().muted" slot="end">
+            <ion-icon class="icon-lock" name="notifications-off"></ion-icon>
+          </ion-text>
+        </ion-item>
+      </div>
+    </ion-item-group>
+  </div>
+
+  <div *ngIf="(nFiled > 0)" (click)="showFiled()" class="separatore">
+    <ion-text class="separatore--testo">Chat archiviate ( {{nFiled}} )</ion-text>
+    <ion-icon class="separatore--icona" *ngIf="!filedUsersShow" name="arrow-dropdown"></ion-icon>
+    <ion-icon class="separatore--icona" *ngIf="filedUsersShow" name="arrow-dropup"></ion-icon>
+  </div>
+  <div class="cont-border" *ngIf="filedUsersShow">
+    <ion-item-group *ngFor="let chat of chatsList">
+      <div *ngIf="chat.payload.val().filed == true">
+        <ion-item class="item-blocked">
+          <ion-avatar slot="start">
+            <img (click)="openPhoto(chat.payload.val().foto)" src="{{chat.payload.val().foto}}">
+          </ion-avatar>
+          <ion-label
+            (press)="openDetails(chat.payload.key,chat.payload.val().firstname,chat.payload.val().lastname,chat.payload.val().foto)"
+            (click)="openChat(chat.payload.key,chat.payload.val().firstname,chat.payload.val().lastname,chat.payload.val().foto)">
+            <ion-text>{{chat.payload.val().firstname}} {{ chat.payload.val().lastname}}</ion-text>
+            <p *ngIf="chat.payload.val().newMess == true" color="success"> Nuovi/o messaggi/o</p>
+          </ion-label>
+          <ion-text *ngIf="chat.payload.val().secret" slot="end">
+            <ion-icon class="icon-lock" name="lock"></ion-icon>
+          </ion-text>
+          <ion-text *ngIf="chat.payload.val().muted" slot="end">
+            <ion-icon class="icon-lock" name="notifications-off"></ion-icon>
+          </ion-text>
+        </ion-item>
+      </div>
+    </ion-item-group>
+
+  </div>
+
+
+</ion-content>

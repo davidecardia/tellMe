@@ -1,0 +1,63 @@
+<ion-content *ngIf="!logFlag" class="cont-login">
+  <form [formGroup]="form" (ngSubmit)="login()">
+    <ion-item class="cont-login--item ion-text-center">
+      <ion-title class="cont-login--title">TellMe</ion-title>
+    </ion-item>
+
+    <div class="cont-input">
+      <ion-item class="cont-input--item ion-text-center">
+        <ion-label class="cont-input--label" position="floating">Email</ion-label>
+        <ion-input formControlName="email"></ion-input>
+      </ion-item>
+      <ion-item class="cont-input--item ion-text-center">
+        <ion-label class="cont-input--label" position="floating">Password</ion-label>
+        <ion-input formControlName="password"></ion-input>
+      </ion-item>
+    </div>
+
+    <div class="cont-btn">
+      <ion-button expand="full" fill="clear" class="cont-btn--btn" id="login" type="submit"> LOGIN</ion-button>
+      <ion-button expand="full" fill="clear" class="cont-btn--btn" id="registr" [routerLink]="[ '/registration']">
+        Registrati
+      </ion-button>
+    </div>
+
+
+  </form>
+
+</ion-content>
+
+<!-- se login non necessario -->
+
+<ion-content *ngIf="logFlag">
+  <ion-grid>
+    <ion-col size="12">
+      <ion-title *ngIf="caricamentoTit" class="titolo">Benvenuto su TellMe</ion-title>
+      <ion-title *ngIf="caricamentoAtt" class="titolo2">Attendi
+        <span id="span-puntino1">.</span>
+        <span id="span-puntino2">.</span>
+        <span id="span-puntino3">.</span>
+      </ion-title>
+    </ion-col>
+    <ion-col size="4" offset="4">
+      <div class="contenitore-rotella" *ngIf="caricamentoRot">
+        <img id="immagine1" src="https://image.flaticon.com/icons/png/512/34/34448.png" alt="">
+        <img id="immagine2" src="https://image.flaticon.com/icons/png/512/34/34448.png" alt="">
+        <!-- <img id="immagine3" src="https://image.flaticon.com/icons/png/512/34/34448.png" alt=""> -->
+      </div>
+    </ion-col>
+  </ion-grid>
+  <div *ngIf="caricamentoAer" class="cont-aereo">
+    <img id="aereo" src="https://img.icons8.com/wired/452/paper-plane.png" alt="">
+  </div>
+</ion-content>
+
+
+
+
+<ion-footer>
+  <ion-toolbar>
+    <ion-text class="footer-p">All rights reserved - © Copyright {{year}}</ion-text>
+    <ion-text class="footer-name">Davide Cardia</ion-text>
+  </ion-toolbar>
+</ion-footer>

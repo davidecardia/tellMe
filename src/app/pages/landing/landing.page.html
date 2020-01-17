@@ -1,0 +1,32 @@
+
+<ion-content>
+    <ion-grid>
+      <ion-col size="12">
+        <ion-title *ngIf="caricamentoTit" class="titolo">Benvenuto su TellMe</ion-title>
+        <ion-title *ngIf="caricamentoAtt" class="titolo2">Attendi
+          <span id="span-puntino1">.</span>
+          <span id="span-puntino2">.</span>
+          <span id="span-puntino3">.</span>
+        </ion-title>
+      </ion-col>
+      <ion-col size="4" offset="4">
+        <div class="contenitore-rotella" *ngIf="caricamentoRot">
+          <img id="immagine1" src="https://image.flaticon.com/icons/png/512/34/34448.png" alt="">
+          <img id="immagine2" src="https://image.flaticon.com/icons/png/512/34/34448.png" alt="">
+          <!-- <img id="immagine3" src="https://image.flaticon.com/icons/png/512/34/34448.png" alt=""> -->
+        </div>
+      </ion-col>
+    </ion-grid>
+    <div *ngIf="caricamentoAer" class="cont-aereo">
+      <img id="aereo" src="https://img.icons8.com/wired/452/paper-plane.png" alt="">
+    </div>
+  </ion-content>
+
+
+
+  <ion-footer>
+    <ion-toolbar>
+      <ion-text class="footer-p">All rights reserved - © Copyright {{year}}</ion-text>
+      <ion-text class="footer-name">Davide Cardia</ion-text>
+    </ion-toolbar>
+  </ion-footer>

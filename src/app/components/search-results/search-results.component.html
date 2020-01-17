@@ -1,0 +1,9 @@
+<ion-item-group>
+  <ion-item
+    *ngFor="let friend of friends">
+    <ion-avatar slot="start">
+      <img src="{{friend.payload.val().foto}}" alt="">
+    </ion-avatar>
+    <ion-button color="dark" fill="clear" (click)="openChat(friend.payload.key,friend.payload.val().firstname,friend.payload.val().lastname,friend.payload.val().foto,friend.payload.val().secret,friend.payload.val().secretKey)">{{friend.payload.val().firstname }} {{friend.payload.val().lastname}}</ion-button>
+  </ion-item>
+</ion-item-group>

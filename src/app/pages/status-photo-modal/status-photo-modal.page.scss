@@ -1,0 +1,70 @@
+.header {
+    --background: #000000;
+    --min-height: 100px;
+}
+
+.iconaClose {
+    color: #ffffff;
+    font-size: 34px
+}
+
+#contenitore {
+    --background: #000000;
+}
+
+.contenitore-foto {
+    text-align: center;
+    padding: auto !important;
+    height: 80%;
+}
+
+.photo {
+    padding: auto !important;
+
+}
+
+.scala {
+    transform: scale(2);
+}
+
+.ridimensiona {
+    transform: scale(1);
+}
+
+.cont-date {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+
+}
+
+.date {
+    color: #ffffff;
+    font-weight: bold;
+    font-size: 12px;
+}
+
+// .progressBar {
+//     // --background: #000000;
+//     --progress-background: red;
+// }
+
+
+
+.tap-div-sx {
+    position: absolute;
+    left: 0px;
+    width: 50%;
+    height: 100%;
+    background: transparent;
+    z-index: 0;
+}
+
+.tap-div-dx {
+    position: absolute;
+    right: 0px;
+    width: 50%;
+    height: 100%;
+    background: transparent;
+    z-index: 0;
+}

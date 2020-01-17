@@ -1,0 +1,83 @@
+<ion-header lines="none">
+  <ion-item class="item-cont">
+    <ion-button (click)="dismissMod()" slot="end" class="item-cont--buttonClose" fill="clear">
+      <ion-icon name="close"></ion-icon>
+    </ion-button>
+  </ion-item>
+</ion-header>
+<div class="bordo"></div>
+
+<ion-content text-center padding>
+
+
+  <ion-title id="titolo" margin-top>Aggiungi gruppo</ion-title>
+
+  <div class="cont-tutto">
+    <ion-item class="it">
+      <ion-label position="floating">Nome del gruppo *</ion-label>
+      <ion-input [(ngModel)]="groupName"></ion-input>
+    </ion-item>
+    <ion-item text-center class="cont-input--item">
+      <div class="fileUpload">
+        <span class="cont-input--label">Scegli immagine gruppo <small><i> (Opzionale) </i></small> </span>
+        <span *ngIf="!file" class="cont-input--label">+</span>
+        <ion-icon color="success" *ngIf="file" class="cont-input--label" name="checkmark"></ion-icon>
+        <input class="upload" (change)="getPhoto($event)" type="file" [(ngModel)]="photo">
+      </div>
+    </ion-item>
+    <ion-item class="it">
+      <ion-label>Scegli amici *</ion-label>
+      <ion-select (ionChange)="getUsersPhoto()" [(ngModel)]=" selectedValue" multiple="true" cancelText="Annulla"
+        okText="Ok">
+        <ion-select-option *ngFor="let friend of friends" value="{{friend.payload.key}}">
+          {{friend.payload.val().firstname}}
+          {{friend.payload.val().lastname}}
+        </ion-select-option>
+      </ion-select>
+    </ion-item>
+    <ion-title class="avata" *ngIf="(photoArr.length == 0 || photoArr.length == 1)">Nessun amico selezionato..
+    </ion-title>
+    <div class="contenitore-rotella" *ngIf="!showPhoto">
+      <img id="immagine1" src="https://image.flaticon.com/icons/png/512/34/34448.png" alt="">
+      <img id="immagine2" src="https://image.flaticon.com/icons/png/512/34/34448.png" alt="">
+    </div>
+
+    <div *ngIf="showPhoto">
+      <div class="avata" *ngIf="(photoArr.length > 1)">
+        <div id="cont-avatar" *ngFor="let item of photoArr;index as i">
+          <ion-avatar class="avat">
+            <img (click)="deleteComponent(i)" src="{{item}}" alt="">
+          </ion-avatar>
+        </div>
+      </div>
+    </div>
+
+
+
+    <!--
+    <div style="overflow: scroll;overflow: visible;">
+      <ion-avatar style="display: inline-block;" *ngFor="let item of photoArr">
+        <ion-img src="{{item}}"></ion-img>
+      </ion-avatar>
+    </div>
+ -->
+
+    <!-- <div *ngIf="selectedValue == friend.payload.key"> -->
+    <!-- <div *ngFor="let user of selectedValue"></div> -->
+
+
+
+  </div>
+
+
+
+  <!-- </div> -->
+
+  <!-- <ion-button type="submit" class="buttonAggiungi" margin-top color="primary">
+      <ion-icon name="person-add"></ion-icon>
+    </ion-button> -->
+  <ion-button (click)="addGroup();" class="buttonAdd" color="success">
+    Crea gruppo &nbsp; <ion-icon name="contacts"></ion-icon>
+  </ion-button>
+
+</ion-content>

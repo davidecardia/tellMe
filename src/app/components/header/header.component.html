@@ -1,0 +1,27 @@
+<ion-app>
+
+  <ion-content>
+    <div *ngIf="searchBar == false" class="cont" [hidden]="hideElement" [hidden]="hide">
+      <ion-item lines="none" *ngIf="searchBar == false" class="cont-header">
+        <ion-title class="cont-header--title">
+          TellMe
+        </ion-title>
+        <ion-button (click)="openModal()" class="cont-header--button" fill="clear">
+          <ion-icon name="person-add"></ion-icon>
+        </ion-button>
+        <ion-button (click)="searchBarActive()" class="cont-header--button" fill="clear">
+          <ion-icon name="search"></ion-icon>
+        </ion-button>
+        <ion-button (click)="options($event)" class="cont-header--button" fill="clear">
+          <ion-icon name="more"></ion-icon>
+        </ion-button>
+      </ion-item>
+
+
+    </div>
+    <app-search-bar (closeSearchBar)="closeSearchBar($event)" *ngIf="searchBar == true"></app-search-bar>
+  </ion-content>
+
+
+  <ion-router-outlet main></ion-router-outlet>
+</ion-app>

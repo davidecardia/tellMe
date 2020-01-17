@@ -1,0 +1,58 @@
+<ion-header id="headerr">
+  <ion-toolbar class="header">
+    <ion-button (click)="dismiss()" slot="start" fill="clear">
+      <ion-icon class="iconaClose" name="close"></ion-icon>
+    </ion-button>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content direction="xy" zooming="true" min-zoom="1.0" max-zoom="2.5" overflow-scroll="false" has-bouncing="false"
+  id="contenitore">
+
+  <div *ngIf="!status" class="contenitore-foto">
+    <img id="immagine" (pinchstart)="zoom()" (pinchend)="zoomEnd()" class="photo" src="{{url}}">
+  </div>
+  <div *ngIf="!status" class="cont-date">
+    <span class="date" style="color:#fff;">{{date}}</span>
+  </div>
+
+  <div *ngIf="status">
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+          <div class="cont-foto">
+            <img class="myPhoto" (pinchstart)="zoom()" (pinchend)="zoomEnd()" src="{{url}}">
+          </div>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-card class="card">
+            <ion-card-header>
+              <ion-card-title class="views">Visualizzazioni</ion-card-title>
+              <ion-card-subtitle class="views viewsNumber">{{views.length}}</ion-card-subtitle>
+            </ion-card-header>
+            <ion-card-content class="card-content-views">
+              <div *ngIf="views.length > 0">
+                <div *ngFor="let view of views">
+                  <div class="cont-views">
+                    <ion-avatar class="userViewAvatar">
+                      <img src="{{view.payload.val().photo}}" alt="">
+                    </ion-avatar>
+                    <span class="span-views">{{view.payload.val().firstname}} {{view.payload.val().lastname}}</span>
+                    <span class="span-hour">{{view.payload.val().hour}}</span>
+                  </div>
+                </div>
+              </div>
+              <ion-text *ngIf="views.length == 0">Nessuna visualizzazione</ion-text>
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+
+      </ion-row>
+    </ion-grid>
+
+
+  </div>
+
+</ion-content>

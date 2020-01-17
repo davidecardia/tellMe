@@ -1,0 +1,77 @@
+<ion-content>
+  <ion-item id="item-freccia">
+    <ion-button (click)="backToChat()" slot="start" fill="clear">
+      <ion-icon name="arrow-round-back"></ion-icon>
+    </ion-button>
+  </ion-item>
+  <div id="cont-foto">
+    <img id="img-p" src="{{photo}}" />
+  </div>
+  <div class="bordo"></div>
+
+
+
+  <ion-card>
+    <!-- <img src="{{photo}}" /> -->
+
+    <ion-card-header>
+      <ion-card-title>{{name}}</ion-card-title>
+      <span>{{created}}</span>
+
+    </ion-card-header>
+    <ion-card-content>
+
+      <ion-item>
+        <ion-label>Silenzia</ion-label>
+        <ion-toggle checked="{{muted}}" id="silenceToggle" [(ngModel)]="isSilenceToggled" (click)="silenceChat()"
+          slot="end" name="cherry" color="dark">
+        </ion-toggle>
+      </ion-item>
+      <ion-item>
+        <ion-label>Gruppo segreto</ion-label>
+        <ion-toggle id="skToggle" checked="{{secret}}" [(ngModel)]="isSKToggled" (click)="secretKey()" slot="end"
+          name="cherry" color="dark">
+        </ion-toggle>
+      </ion-item>
+      <ion-item>
+        <ion-label>Archivia</ion-label>
+        <ion-toggle color="dark" id="filedToggle" checked="{{filed}}" [(ngModel)]="isFiledToggled" (click)="fileChat()"
+          slot="end" name="cherry">
+        </ion-toggle>
+      </ion-item>
+      <ion-item>
+        <ion-label>Svuota chat</ion-label>
+        <ion-button (click)="emptyChat();" fill="clear">
+          <ion-icon slot="end" color="warning" name="refresh"></ion-icon>
+        </ion-button>
+      </ion-item>
+      <ion-item>
+        <ion-label color="danger">Abbandona gruppo</ion-label>
+        <ion-button (click)="leaveGroup();" fill="clear">
+          <ion-icon slot="end" color="danger" name="exit"></ion-icon>
+        </ion-button>
+      </ion-item>
+
+    </ion-card-content>
+  </ion-card>
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Componenti</ion-card-title>
+    </ion-card-header>
+    <ion-card-content class="card-componenti">
+      <ion-item *ngFor="let user of components">
+        <ion-avatar slot="start">
+          <img src="{{user.payload.val().photo}}" alt="">
+        </ion-avatar>
+        <ion-label class="card-componenti--label">{{user.payload.val().firstname}} {{user.payload.val().lastname}}
+        </ion-label>
+        <div *ngIf="(user.payload.key === admin)" class="card-componenti--admin-cont">
+          <span class="card-componenti--admin">Amministratore</span>
+        </div>
+      </ion-item>
+    </ion-card-content>
+  </ion-card>
+
+
+
+</ion-content>

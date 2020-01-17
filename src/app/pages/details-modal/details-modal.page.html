@@ -1,0 +1,64 @@
+<ion-content>
+  <ion-item id="item-freccia">
+    <ion-button (click)="backToChat()" slot="start" fill="clear">
+      <ion-icon name="arrow-round-back"></ion-icon>
+    </ion-button>
+  </ion-item>
+  <div id="cont-foto">
+    <img id="img-p" src="{{photo}}" />
+  </div>
+  <div class="bordo"></div>
+
+
+  <ion-card>
+    <!-- <img src="{{photo}}" /> -->
+
+    <ion-card-header>
+      <ion-card-title>{{firstname}} {{lastname}}</ion-card-title>
+      <ion-card-subtitle *ngIf="online">Online</ion-card-subtitle>
+      <ion-card-subtitle *ngIf="date">{{date}}</ion-card-subtitle>
+
+    </ion-card-header>
+    <ion-card-content>
+      <ion-item>
+        <ion-label>Blocca</ion-label>
+        <ion-toggle checked="{{blocked}}" id="blockToggle" [(ngModel)]="isBlockToggled" (click)="block()" slot="end"
+          name="cherry" color="danger"></ion-toggle>
+      </ion-item>
+      <ion-item>
+        <ion-label>Silenzia</ion-label>
+        <ion-toggle checked="{{muted}}" id="silenceToggle" [(ngModel)]="isSilenceToggled" (click)="silenceChat()" slot="end" name="cherry"
+        color="dark">
+        </ion-toggle>
+      </ion-item>
+      <ion-item>
+        <ion-label>Chat segreta</ion-label>
+        <ion-toggle id="skToggle" checked="{{secret}}" [(ngModel)]="isSKToggled" (click)="secretKey()" slot="end"
+          name="cherry"  color="dark">
+        </ion-toggle>
+      </ion-item>
+      <ion-item>
+        <ion-label>Archivia</ion-label>
+        <ion-toggle color="dark" id="filedToggle" checked="{{filed}}" [(ngModel)]="isFiledToggled" (click)="fileChat()" slot="end"
+          name="cherry" >
+        </ion-toggle>
+      </ion-item>
+      <ion-item>
+        <ion-label>Svuota chat</ion-label>
+        <ion-button (click)="emptyChat();" fill="clear">
+          <ion-icon slot="end" color="warning" name="refresh"></ion-icon>
+        </ion-button>
+      </ion-item>
+      <ion-item>
+        <ion-label>Elimina amico</ion-label>
+        <ion-button (click)="deleteFriend();" fill="clear">
+          <ion-icon slot="end" color="danger" name="trash"></ion-icon>
+        </ion-button>
+      </ion-item>
+
+    </ion-card-content>
+  </ion-card>
+
+
+
+</ion-content>

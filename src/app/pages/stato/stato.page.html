@@ -1,0 +1,85 @@
+<ion-content (swipeleft)="swipeLeft()" (swiperight)="swipeRight()">
+  <div class="cont-rot" *ngIf="caricamento">
+    <img class="rot-img" src="../../assets/rotella.png" alt="">
+  </div>
+  <div *ngIf="!caricamento">
+    <form [formGroup]="form">
+      <ion-item class="stato-personale">
+        <div class="fileUpload">
+          <span>
+            <ion-button slot="start" fill="clear" class="cont-btn--btn">
+              <ion-icon class="icons" name="add"></ion-icon>
+            </ion-button>
+          </span>
+
+          <input class="upload" (change)="getFile($event)" formControlName="foto" type="file">
+        </div>
+        <ion-button slot="end" fill="clear" class="cont-btn--btn" (click)="addCameraPhoto()">
+          <ion-icon name="camera"></ion-icon>
+        </ion-button>
+      </ion-item>
+    </form>
+
+    <div *ngFor="let stato of personalStatus" class="separatore">
+      <p class="separatore--testo">Il mio stato</p>
+    </div>
+    <div *ngFor="let stato of personalStatus">
+      <ion-item class="stato-personalee">
+        <ion-avatar (click)="openMyStatus(stato.payload.val().status,stato.payload.val().zDate)" slot="start">
+          <img src="{{stato.payload.val().status}}">
+        </ion-avatar>
+        <ion-label (click)="openMyStatus(stato.payload.val().status,stato.payload.val().zDate)">
+          <ion-text>{{stato.payload.val().firstname}} {{stato.payload.val().lastname}}</ion-text>
+        </ion-label>
+        <ion-button fill="clear" slot="end" (click)="removeStatus();">
+          <ion-icon name="close"></ion-icon>
+        </ion-button>
+      </ion-item>
+
+
+    </div>
+    <div class="separatore">
+      <p class="separatore--testo">Aggiornamenti recenti</p>
+    </div>
+    <ion-item class="stato-personalee" *ngIf="statuses.length == 0 || (statuses.length == views.length)">
+      <span>Nessun aggiornamento...</span>
+    </ion-item>
+
+    <div *ngFor="let stato of statuses; let i= index;">
+      <ion-item *ngIf="!views.includes(stato.payload.key) && stato.payload.key !== idLogged"
+        (click)="openPhoto(stato.payload.val().status,stato.payload.key,stato.payload.val().zDate,i)"
+        class="stato-personalee">
+        <ion-avatar slot="start" class="noViewStatus">
+          <img src="{{stato.payload.val().status}}">
+        </ion-avatar>
+        <ion-label>
+          <ion-text>{{stato.payload.val().firstname}} {{stato.payload.val().lastname}}</ion-text>
+          <ion-text class="date">{{stato.payload.val().zDate}}</ion-text>
+        </ion-label>
+      </ion-item>
+    </div>
+
+    <div *ngIf="(views.length > 0)" class="separatore">
+      <p class="separatore--testo">Aggiornamenti visualizzati</p>
+    </div>
+
+    <div *ngFor="let stato of statuses;let i= index;">
+      <ion-item *ngIf="views.includes(stato.payload.key) && stato.payload.key !== idLogged"
+        (click)="openPhoto(stato.payload.val().status,stato.payload.key,stato.payload.val().zDate,i)"
+        class="stato-personalee">
+        <ion-avatar class="sawStatus" slot="start">
+          <img src="{{stato.payload.val().status}}">
+        </ion-avatar>
+        <ion-label>
+          <ion-text>{{stato.payload.val().firstname}} {{stato.payload.val().lastname}}</ion-text>
+          <ion-text class="date">{{stato.payload.val().zDate}}</ion-text>
+        </ion-label>
+      </ion-item>
+    </div>
+  </div>
+
+
+
+
+
+</ion-content>

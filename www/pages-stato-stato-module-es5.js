@@ -1,0 +1,424 @@
+(window["webpackJsonp"] = window["webpackJsonp"] || []).push([["pages-stato-stato-module"],{
+
+/***/ "./node_modules/raw-loader/index.js!./src/app/pages/stato/stato.page.html":
+/*!***********************************************************************!*\
+  !*** ./node_modules/raw-loader!./src/app/pages/stato/stato.page.html ***!
+  \***********************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<ion-content (swipeleft)=\"swipeLeft()\" (swiperight)=\"swipeRight()\">\n  <form [formGroup]=\"form\">\n    <ion-item class=\"stato-personale\">\n      <div class=\"fileUpload\">\n        <span>\n          <ion-button slot=\"start\" fill=\"clear\" class=\"cont-btn--btn\">\n            <ion-icon class=\"icons\" name=\"add\"></ion-icon>\n          </ion-button>\n        </span>\n\n        <input class=\"upload\" (change)=\"getFile($event)\" formControlName=\"foto\" type=\"file\">\n      </div>\n      <ion-button slot=\"end\" fill=\"clear\" class=\"cont-btn--btn\" (click)=\"addCameraPhoto()\">\n        <ion-icon name=\"camera\"></ion-icon>\n      </ion-button>\n    </ion-item>\n  </form>\n\n  <div *ngFor=\"let stato of personalStatus\" class=\"separatore\">\n    <p class=\"separatore--testo\">Il mio stato</p>\n  </div>\n  <div *ngFor=\"let stato of personalStatus\">\n    <ion-item (click)=\"openPhoto(stato.payload.val().status);\" class=\"stato-personalee\">\n      <ion-avatar slot=\"start\">\n        <img src=\"{{stato.payload.val().status}}\">\n      </ion-avatar>\n      <ion-label>\n        <ion-text>{{stato.payload.val().firstname}} {{stato.payload.val().lastname}}</ion-text>\n      </ion-label>\n      <ion-button fill=\"clear\" slot=\"end\" (click)=\"removeStatus();\">\n        <ion-icon name=\"close\"></ion-icon>\n      </ion-button>\n\n    </ion-item>\n\n\n  </div>\n  <div class=\"separatore\">\n    <p class=\"separatore--testo\">Aggiornamenti recenti</p>\n  </div>\n  <ion-item class=\"stato-personalee\" *ngIf=\"statuses.length == 0\">\n    <span>Nessun aggiornamento...</span>\n  </ion-item>\n\n\n  <ion-item *ngFor=\"let stato of statuses\" (click)=\"openPhoto(stato.payload.val().status);\" class=\"stato-personalee\">\n    <ion-avatar slot=\"start\">\n      <img src=\"{{stato.payload.val().status}}\">\n    </ion-avatar>\n    <ion-label>\n      <ion-text>{{stato.payload.val().firstname}} {{stato.payload.val().lastname}}</ion-text>\n    </ion-label>\n  </ion-item>\n\n\n\n</ion-content>"
+
+/***/ }),
+
+/***/ "./src/app/pages/stato/stato.module.ts":
+/*!*********************************************!*\
+  !*** ./src/app/pages/stato/stato.module.ts ***!
+  \*********************************************/
+/*! exports provided: StatoPageModule */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "StatoPageModule", function() { return StatoPageModule; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/common */ "./node_modules/@angular/common/fesm5/common.js");
+/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm5/forms.js");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @ionic/angular */ "./node_modules/@ionic/angular/dist/fesm5.js");
+/* harmony import */ var _stato_page__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./stato.page */ "./src/app/pages/stato/stato.page.ts");
+/* harmony import */ var src_app_shared_shared_module__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! src/app/shared/shared.module */ "./src/app/shared/shared.module.ts");
+
+
+
+
+
+
+
+
+var routes = [
+    {
+        path: '',
+        component: _stato_page__WEBPACK_IMPORTED_MODULE_6__["StatoPage"]
+    }
+];
+var StatoPageModule = /** @class */ (function () {
+    function StatoPageModule() {
+    }
+    StatoPageModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["NgModule"])({
+            imports: [
+                _angular_common__WEBPACK_IMPORTED_MODULE_2__["CommonModule"],
+                _angular_forms__WEBPACK_IMPORTED_MODULE_3__["ReactiveFormsModule"],
+                src_app_shared_shared_module__WEBPACK_IMPORTED_MODULE_7__["SharedModule"],
+                _ionic_angular__WEBPACK_IMPORTED_MODULE_5__["IonicModule"],
+                _angular_router__WEBPACK_IMPORTED_MODULE_4__["RouterModule"].forChild(routes)
+            ],
+            declarations: [_stato_page__WEBPACK_IMPORTED_MODULE_6__["StatoPage"]]
+        })
+    ], StatoPageModule);
+    return StatoPageModule;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/pages/stato/stato.page.scss":
+/*!*********************************************!*\
+  !*** ./src/app/pages/stato/stato.page.scss ***!
+  \*********************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "in-content {\n  --padding-bottom: 20%;\n}\n\n.separatore {\n  width: 100%;\n  height: 27px;\n  background-color: rgba(0, 0, 0, 0.06);\n  margin-top: 10px 0 10px 0;\n}\n\n.separatore--testo {\n  padding: 5px 0 0 15px;\n  font-size: 13px;\n  color: rgba(0, 0, 0, 0.5);\n}\n\n.stato-personale {\n  --border-color: transparent;\n  --padding-start: 80px;\n  --padding-end: 80px;\n}\n\n.stato-personalee {\n  --border-color: transparent;\n  --padding-start: 40px;\n  --padding-end: 40px;\n}\n\n#removeStatus {\n  cursor: pointer !important;\n}\n\n.fileUpload {\n  position: relative;\n  overflow: hidden;\n  margin: 10px;\n}\n\n.fileUpload input.upload {\n  position: absolute;\n  top: 0;\n  right: 0;\n  margin: 0;\n  padding: 0;\n  font-size: 20px;\n  cursor: pointer;\n  opacity: 0;\n  filter: alpha(opacity=0);\n}\n\n.icons {\n  font-size: 24px;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9ob21lL2RhdmlkZS9TY3JpdmFuaWEvbnVvdmlQcm9nZXR0aS90ZWxsbWUvdGVsbE1lL3NyYy9hcHAvcGFnZXMvc3RhdG8vc3RhdG8ucGFnZS5zY3NzIiwic3JjL2FwcC9wYWdlcy9zdGF0by9zdGF0by5wYWdlLnNjc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7RUFDSSxxQkFBQTtBQ0NKOztBREVBO0VBQ0ksV0FBQTtFQUNBLFlBQUE7RUFDQSxxQ0FBQTtFQUNBLHlCQUFBO0FDQ0o7O0FEQ0k7RUFDSSxxQkFBQTtFQUNBLGVBQUE7RUFDQSx5QkFBQTtBQ0NSOztBREdBO0VBQ0ksMkJBQUE7RUFDQSxxQkFBQTtFQUNBLG1CQUFBO0FDQUo7O0FER0E7RUFDSSwyQkFBQTtFQUNBLHFCQUFBO0VBQ0EsbUJBQUE7QUNBSjs7QURLQTtFQUNJLDBCQUFBO0FDRko7O0FETUE7RUFDSSxrQkFBQTtFQUNBLGdCQUFBO0VBQ0EsWUFBQTtBQ0hKOztBRE9BO0VBQ0ksa0JBQUE7RUFDQSxNQUFBO0VBQ0EsUUFBQTtFQUNBLFNBQUE7RUFDQSxVQUFBO0VBQ0EsZUFBQTtFQUNBLGVBQUE7RUFDQSxVQUFBO0VBQ0Esd0JBQUE7QUNKSjs7QURPQTtFQUNJLGVBQUE7QUNKSiIsImZpbGUiOiJzcmMvYXBwL3BhZ2VzL3N0YXRvL3N0YXRvLnBhZ2Uuc2NzcyIsInNvdXJjZXNDb250ZW50IjpbImluLWNvbnRlbnR7XG4gICAgLS1wYWRkaW5nLWJvdHRvbTogMjAlO1xufVxuXG4uc2VwYXJhdG9yZSB7XG4gICAgd2lkdGg6IDEwMCU7XG4gICAgaGVpZ2h0OiAyN3B4O1xuICAgIGJhY2tncm91bmQtY29sb3I6IHJnYmEoJGNvbG9yOiAjMDAwMDAwLCAkYWxwaGE6IC4wNik7XG4gICAgbWFyZ2luLXRvcDogMTBweCAwIDEwcHggMDtcblxuICAgICYtLXRlc3RvIHtcbiAgICAgICAgcGFkZGluZzogNXB4IDAgMCAxNXB4O1xuICAgICAgICBmb250LXNpemU6IDEzcHg7XG4gICAgICAgIGNvbG9yOiByZ2JhKCRjb2xvcjogIzAwMDAwMCwgJGFscGhhOiAuNSk7XG4gICAgfVxufVxuXG4uc3RhdG8tcGVyc29uYWxlIHtcbiAgICAtLWJvcmRlci1jb2xvcjogdHJhbnNwYXJlbnQ7XG4gICAgLS1wYWRkaW5nLXN0YXJ0OiA4MHB4O1xuICAgIC0tcGFkZGluZy1lbmQ6IDgwcHg7XG59XG5cbi5zdGF0by1wZXJzb25hbGVlIHtcbiAgICAtLWJvcmRlci1jb2xvcjogdHJhbnNwYXJlbnQ7XG4gICAgLS1wYWRkaW5nLXN0YXJ0OiA0MHB4O1xuICAgIC0tcGFkZGluZy1lbmQ6IDQwcHg7XG59XG5cblxuXG4jcmVtb3ZlU3RhdHVzIHtcbiAgICBjdXJzb3I6IHBvaW50ZXIgIWltcG9ydGFudDtcbn1cblxuXG4uZmlsZVVwbG9hZCB7XG4gICAgcG9zaXRpb246IHJlbGF0aXZlO1xuICAgIG92ZXJmbG93OiBoaWRkZW47XG4gICAgbWFyZ2luOiAxMHB4O1xuICAgIC8vIGxlZnQ6IDE3JTtcbn1cblxuLmZpbGVVcGxvYWQgaW5wdXQudXBsb2FkIHtcbiAgICBwb3NpdGlvbjogYWJzb2x1dGU7XG4gICAgdG9wOiAwO1xuICAgIHJpZ2h0OiAwO1xuICAgIG1hcmdpbjogMDtcbiAgICBwYWRkaW5nOiAwO1xuICAgIGZvbnQtc2l6ZTogMjBweDtcbiAgICBjdXJzb3I6IHBvaW50ZXI7XG4gICAgb3BhY2l0eTogMDtcbiAgICBmaWx0ZXI6IGFscGhhKG9wYWNpdHk9MCk7XG59XG5cbi5pY29ucyB7XG4gICAgZm9udC1zaXplOiAyNHB4O1xufSIsImluLWNvbnRlbnQge1xuICAtLXBhZGRpbmctYm90dG9tOiAyMCU7XG59XG5cbi5zZXBhcmF0b3JlIHtcbiAgd2lkdGg6IDEwMCU7XG4gIGhlaWdodDogMjdweDtcbiAgYmFja2dyb3VuZC1jb2xvcjogcmdiYSgwLCAwLCAwLCAwLjA2KTtcbiAgbWFyZ2luLXRvcDogMTBweCAwIDEwcHggMDtcbn1cbi5zZXBhcmF0b3JlLS10ZXN0byB7XG4gIHBhZGRpbmc6IDVweCAwIDAgMTVweDtcbiAgZm9udC1zaXplOiAxM3B4O1xuICBjb2xvcjogcmdiYSgwLCAwLCAwLCAwLjUpO1xufVxuXG4uc3RhdG8tcGVyc29uYWxlIHtcbiAgLS1ib3JkZXItY29sb3I6IHRyYW5zcGFyZW50O1xuICAtLXBhZGRpbmctc3RhcnQ6IDgwcHg7XG4gIC0tcGFkZGluZy1lbmQ6IDgwcHg7XG59XG5cbi5zdGF0by1wZXJzb25hbGVlIHtcbiAgLS1ib3JkZXItY29sb3I6IHRyYW5zcGFyZW50O1xuICAtLXBhZGRpbmctc3RhcnQ6IDQwcHg7XG4gIC0tcGFkZGluZy1lbmQ6IDQwcHg7XG59XG5cbiNyZW1vdmVTdGF0dXMge1xuICBjdXJzb3I6IHBvaW50ZXIgIWltcG9ydGFudDtcbn1cblxuLmZpbGVVcGxvYWQge1xuICBwb3NpdGlvbjogcmVsYXRpdmU7XG4gIG92ZXJmbG93OiBoaWRkZW47XG4gIG1hcmdpbjogMTBweDtcbn1cblxuLmZpbGVVcGxvYWQgaW5wdXQudXBsb2FkIHtcbiAgcG9zaXRpb246IGFic29sdXRlO1xuICB0b3A6IDA7XG4gIHJpZ2h0OiAwO1xuICBtYXJnaW46IDA7XG4gIHBhZGRpbmc6IDA7XG4gIGZvbnQtc2l6ZTogMjBweDtcbiAgY3Vyc29yOiBwb2ludGVyO1xuICBvcGFjaXR5OiAwO1xuICBmaWx0ZXI6IGFscGhhKG9wYWNpdHk9MCk7XG59XG5cbi5pY29ucyB7XG4gIGZvbnQtc2l6ZTogMjRweDtcbn0iXX0= */"
+
+/***/ }),
+
+/***/ "./src/app/pages/stato/stato.page.ts":
+/*!*******************************************!*\
+  !*** ./src/app/pages/stato/stato.page.ts ***!
+  \*******************************************/
+/*! exports provided: StatoPage */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "StatoPage", function() { return StatoPage; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_fire_database__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/fire/database */ "./node_modules/@angular/fire/database/index.js");
+/* harmony import */ var _photo_modal_photo_modal_page__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./../photo-modal/photo-modal.page */ "./src/app/pages/photo-modal/photo-modal.page.ts");
+/* harmony import */ var _ionic_native_camera_ngx__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @ionic-native/camera/ngx */ "./node_modules/@ionic-native/camera/ngx/index.js");
+/* harmony import */ var _services_chat_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./../../services/chat.service */ "./src/app/services/chat.service.ts");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+/* harmony import */ var _services_statuses_service__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./../../services/statuses.service */ "./src/app/services/statuses.service.ts");
+/* harmony import */ var _services_auth_service__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./../../services/auth.service */ "./src/app/services/auth.service.ts");
+/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm5/forms.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _angular_fire_storage__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @angular/fire/storage */ "./node_modules/@angular/fire/storage/index.js");
+/* harmony import */ var src_app_services_users_service__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! src/app/services/users.service */ "./src/app/services/users.service.ts");
+/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! @ionic/angular */ "./node_modules/@ionic/angular/dist/fesm5.js");
+
+
+
+
+
+
+
+
+
+
+
+
+
+var StatoPage = /** @class */ (function () {
+    function StatoPage(storage, fb, formBuilder, statusesService, authService, usersService, chatService, camera, loadingController, modalController, router) {
+        var _this = this;
+        this.storage = storage;
+        this.fb = fb;
+        this.formBuilder = formBuilder;
+        this.statusesService = statusesService;
+        this.authService = authService;
+        this.usersService = usersService;
+        this.chatService = chatService;
+        this.camera = camera;
+        this.loadingController = loadingController;
+        this.modalController = modalController;
+        this.router = router;
+        this.statuses = [];
+        this.personalStatus = [];
+        this.friend = [];
+        this.idLogged = this.authService.getIdLoggedUser();
+        this.chatService.getFriendsList(this.idLogged).subscribe(function (res) {
+            _this.friendsList = res.filter(function (item) {
+                return item.payload.key;
+            });
+        });
+        this.getMyStatus();
+        this.getListStatuses();
+        this.form = this.formBuilder.group({
+            foto: new _angular_forms__WEBPACK_IMPORTED_MODULE_8__["FormControl"]('', _angular_forms__WEBPACK_IMPORTED_MODULE_8__["Validators"].required),
+        });
+    }
+    StatoPage.prototype.ngOnInit = function () {
+    };
+    StatoPage.prototype.ionViewWillEnter = function () {
+        this.getMyStatus();
+        this.getListStatuses();
+    };
+    StatoPage.prototype.addCameraPhoto = function () {
+        var _this = this;
+        var options = {
+            quality: 50,
+            destinationType: this.camera.DestinationType.DATA_URL,
+            encodingType: this.camera.EncodingType.JPEG,
+            mediaType: this.camera.MediaType.PICTURE,
+            correctOrientation: true,
+            saveToPhotoAlbum: false //true in prod,
+            // popoverOptions: new CameraPopoverOptions //slider di foto della gallery,ma funge solo con ios
+        };
+        this.camera.getPicture(options).then(function (imageData) {
+            var base64Image = 'data:image/jpeg;base64,' + imageData;
+            _this.add(base64Image);
+        }, function (err) {
+            alert(err);
+        });
+    };
+    StatoPage.prototype.add = function (image) {
+        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
+            var _this = this;
+            return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
+                this.fileName = 'status';
+                this.task = this.statusesService.upLoad(this.idLogged, this.fileName).putString(image, 'data_url');
+                // let progress = (this.task.snapshot.bytesTransferred / this.task.snapshot.totalBytes) * 100;
+                // alert(progress)
+                this.task.then(function () {
+                    _this.statusesService.upLoad(_this.idLogged, _this.fileName).getDownloadURL().then(function (url) {
+                        _this.url = url;
+                        _this.usersService.getLogUserData(_this.idLogged).subscribe(function (res) {
+                            _this.statusesService.saveStatus(_this.idLogged).set({
+                                status: _this.url,
+                                firstname: res[1],
+                                lastname: res[2]
+                            });
+                        });
+                    });
+                });
+                return [2 /*return*/];
+            });
+        });
+    };
+    StatoPage.prototype.getFile = function (event) {
+        var _this = this;
+        this.file = event.target.files[0];
+        setTimeout(function () {
+            _this.addPhoto();
+        }, 200);
+    };
+    StatoPage.prototype.addPhoto = function () {
+        var _this = this;
+        if (this.idLogged) {
+            this.fileName = 'status';
+            // this.presentLoading(timer);
+            this.task = this.statusesService.upLoad(this.idLogged, this.fileName).put(this.file);
+            this.task.then(function (p) {
+                console.log(p.task.snapshot.state);
+            });
+            this.task.then(function () {
+                // this.authService.
+                _this.statusesService.upLoad(_this.idLogged, _this.fileName).getDownloadURL().then(function (url) {
+                    _this.url = url;
+                    _this.usersService.getLogUserData(_this.idLogged).subscribe(function (res) {
+                        _this.statusesService.saveStatus(_this.idLogged).set({
+                            status: _this.url,
+                            firstname: res[1],
+                            lastname: res[2]
+                        });
+                    });
+                });
+                setTimeout(function () {
+                    _this.statusesService.removeStatus(_this.idLogged);
+                    _this.statusesService.removeStatusStorage(_this.idLogged, _this.fileName);
+                }, 86400000);
+            });
+        }
+        else {
+            this.authService.logOut();
+        }
+        // this.task.then(res => {
+        //   console.log(res.downloadURL);
+        // })
+        // percentage.subscribe(res => {
+        //   // console.log(res);
+        // })
+        this.file = null;
+    };
+    StatoPage.prototype.getListStatuses = function () {
+        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
+            var _this = this;
+            return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
+                this.statusesService.getListStatus().snapshotChanges().subscribe(function (res) {
+                    _this.statuses = res.filter(function (item) {
+                        for (var i = 0; i < _this.friendsList.length; i++) {
+                            _this.friend.push(_this.friendsList[i].key);
+                        }
+                        if (_this.friend.includes(item.key)) {
+                            return item;
+                        }
+                    });
+                });
+                return [2 /*return*/];
+            });
+        });
+    };
+    StatoPage.prototype.getMyStatus = function () {
+        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
+            var _this = this;
+            return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
+                this.statusesService.getMyStatus().snapshotChanges().subscribe(function (res) {
+                    _this.personalStatus = res.filter(function (item) {
+                        return item.key === _this.idLogged;
+                    });
+                });
+                return [2 /*return*/];
+            });
+        });
+    };
+    StatoPage.prototype.removeStatus = function () {
+        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
+            return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
+                this.statusesService.removeStatus(this.idLogged);
+                this.statusesService.removeStatusStorage(this.idLogged, this.fileName);
+                return [2 /*return*/];
+            });
+        });
+    };
+    StatoPage.prototype.presentLoading = function () {
+        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
+            var loading, _a, role, data;
+            return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_b) {
+                switch (_b.label) {
+                    case 0: return [4 /*yield*/, this.loadingController.create({
+                            message: 'Caricamento..',
+                            duration: 5000
+                        })];
+                    case 1:
+                        loading = _b.sent();
+                        return [4 /*yield*/, loading.present()];
+                    case 2:
+                        _b.sent();
+                        return [4 /*yield*/, loading.onDidDismiss()];
+                    case 3:
+                        _a = _b.sent(), role = _a.role, data = _a.data;
+                        console.log('Loading dismissed!');
+                        return [2 /*return*/];
+                }
+            });
+        });
+    };
+    StatoPage.prototype.openPhoto = function (url) {
+        this.presentModal(url);
+    };
+    StatoPage.prototype.presentModal = function (url) {
+        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
+            var modal;
+            return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, this.modalController.create({
+                            component: _photo_modal_photo_modal_page__WEBPACK_IMPORTED_MODULE_2__["PhotoModalPage"],
+                            componentProps: { url: url }
+                        })];
+                    case 1:
+                        modal = _a.sent();
+                        return [4 /*yield*/, modal.present()];
+                    case 2: return [2 /*return*/, _a.sent()];
+                }
+            });
+        });
+    };
+    StatoPage.prototype.swipeLeft = function () {
+        this.router.navigateByUrl('/home/utenti');
+    };
+    StatoPage.prototype.swipeRight = function () {
+        this.router.navigateByUrl('/home/chat');
+    };
+    StatoPage.ctorParameters = function () { return [
+        { type: _angular_fire_storage__WEBPACK_IMPORTED_MODULE_10__["AngularFireStorage"] },
+        { type: _angular_fire_database__WEBPACK_IMPORTED_MODULE_1__["AngularFireDatabase"] },
+        { type: _angular_forms__WEBPACK_IMPORTED_MODULE_8__["FormBuilder"] },
+        { type: _services_statuses_service__WEBPACK_IMPORTED_MODULE_6__["StatusesService"] },
+        { type: _services_auth_service__WEBPACK_IMPORTED_MODULE_7__["AuthService"] },
+        { type: src_app_services_users_service__WEBPACK_IMPORTED_MODULE_11__["UsersService"] },
+        { type: _services_chat_service__WEBPACK_IMPORTED_MODULE_4__["ChatService"] },
+        { type: _ionic_native_camera_ngx__WEBPACK_IMPORTED_MODULE_3__["Camera"] },
+        { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_12__["LoadingController"] },
+        { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_12__["ModalController"] },
+        { type: _angular_router__WEBPACK_IMPORTED_MODULE_5__["Router"] }
+    ]; };
+    StatoPage = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_9__["Component"])({
+            selector: 'app-stato',
+            template: __webpack_require__(/*! raw-loader!./stato.page.html */ "./node_modules/raw-loader/index.js!./src/app/pages/stato/stato.page.html"),
+            styles: [__webpack_require__(/*! ./stato.page.scss */ "./src/app/pages/stato/stato.page.scss")]
+        }),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_fire_storage__WEBPACK_IMPORTED_MODULE_10__["AngularFireStorage"],
+            _angular_fire_database__WEBPACK_IMPORTED_MODULE_1__["AngularFireDatabase"],
+            _angular_forms__WEBPACK_IMPORTED_MODULE_8__["FormBuilder"],
+            _services_statuses_service__WEBPACK_IMPORTED_MODULE_6__["StatusesService"],
+            _services_auth_service__WEBPACK_IMPORTED_MODULE_7__["AuthService"],
+            src_app_services_users_service__WEBPACK_IMPORTED_MODULE_11__["UsersService"],
+            _services_chat_service__WEBPACK_IMPORTED_MODULE_4__["ChatService"],
+            _ionic_native_camera_ngx__WEBPACK_IMPORTED_MODULE_3__["Camera"],
+            _ionic_angular__WEBPACK_IMPORTED_MODULE_12__["LoadingController"],
+            _ionic_angular__WEBPACK_IMPORTED_MODULE_12__["ModalController"],
+            _angular_router__WEBPACK_IMPORTED_MODULE_5__["Router"]])
+    ], StatoPage);
+    return StatoPage;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/services/statuses.service.ts":
+/*!**********************************************!*\
+  !*** ./src/app/services/statuses.service.ts ***!
+  \**********************************************/
+/*! exports provided: StatusesService */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "StatusesService", function() { return StatusesService; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_fire_database__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/fire/database */ "./node_modules/@angular/fire/database/index.js");
+/* harmony import */ var _angular_fire_storage__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/fire/storage */ "./node_modules/@angular/fire/storage/index.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+
+
+
+
+var StatusesService = /** @class */ (function () {
+    function StatusesService(storage, db) {
+        this.storage = storage;
+        this.db = db;
+    }
+    StatusesService.prototype.upLoad = function (idLogged, fileName) {
+        return this.storage.storage.ref("statuses/" + idLogged + "/" + fileName + ".jpg");
+    };
+    StatusesService.prototype.saveStatus = function (idLogged) {
+        return this.db.database.ref("/statuses/" + idLogged + "/");
+    };
+    StatusesService.prototype.getListStatus = function () {
+        return this.db.list('/statuses/');
+    };
+    StatusesService.prototype.removeStatus = function (idLogged) {
+        this.db.database.ref("statuses/" + idLogged).remove();
+    };
+    StatusesService.prototype.removeStatusStorage = function (idLogged, filename) {
+        this.storage.storage.ref("statuses/" + idLogged + "/" + filename).delete();
+    };
+    StatusesService.prototype.getMyStatus = function () {
+        return this.db.list('/statuses/');
+    };
+    StatusesService.ctorParameters = function () { return [
+        { type: _angular_fire_storage__WEBPACK_IMPORTED_MODULE_2__["AngularFireStorage"] },
+        { type: _angular_fire_database__WEBPACK_IMPORTED_MODULE_1__["AngularFireDatabase"] }
+    ]; };
+    StatusesService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_3__["Injectable"])({
+            providedIn: 'root'
+        }),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_fire_storage__WEBPACK_IMPORTED_MODULE_2__["AngularFireStorage"],
+            _angular_fire_database__WEBPACK_IMPORTED_MODULE_1__["AngularFireDatabase"]])
+    ], StatusesService);
+    return StatusesService;
+}());
+
+
+
+/***/ })
+
+}]);
+//# sourceMappingURL=pages-stato-stato-module-es5.js.map
